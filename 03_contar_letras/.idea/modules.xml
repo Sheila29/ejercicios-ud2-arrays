@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/03_contar_letras.iml" filepath="$PROJECT_DIR$/.idea/03_contar_letras.iml" />
+      <module fileurl="file://$PROJECT_DIR$/03_contar_letras.iml" filepath="$PROJECT_DIR$/03_contar_letras.iml" />
     </modules>
   </component>
 </project>
