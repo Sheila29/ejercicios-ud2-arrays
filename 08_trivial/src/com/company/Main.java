@@ -56,7 +56,7 @@ public class Main {
             // Mostrar preguntas de forma aleatoria hasta FIN.
 
 
-                
+
 
 
         } while (!decision.equalsIgnoreCase("FIN"));
