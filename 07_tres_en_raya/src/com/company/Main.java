@@ -9,12 +9,10 @@ import java.io.InputStreamReader;
 public class Main {
 
 
+    public static boolean comprobarGanador(int[][] t) {
 
 
-    public static boolean comprobarGanador(int[][] t){
-
-
-        for (int i = 0; i < 2 ; i++) {
+        for (int i = 0; i < 2; i++) {
 
 
             if ((t[0][0] == i) && (t[0][1] == i) && (t[0][2] == i)) {
@@ -35,7 +33,6 @@ public class Main {
             }
 
 
-
             if ((t[0][0] == i) && (t[1][1] == i) && (t[2][2] == i)) {
                 return true;
             }
@@ -49,125 +46,90 @@ public class Main {
         return false;
     }
 
-
-
-
     public static void visualizarTablero(int[][] t) {
 
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
 
-
                 switch (t[i][j]) {
                     case 0:
-                        System.out.println(" O ");
+                        System.out.print(" o ");
                         break;
                     case 1:
-                        System.out.println(" X ");
+                        System.out.print(" x ");
                         break;
                     case 7:
-                        System.out.println(" . ");
+                        System.out.print(" . ");
                         break;
-
-
                 }
-
             }
-
             System.out.println();
-
-
         }
-
-
     }
 
 
+    public static void main(String[] args) throws IOException {
+
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        int[][] t = new int[3][3];
+
+        // inicializar las casillas vacías
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                t[i][j] = 7;
 
 
-
-
-
-
-        public static void main(String[] args) throws IOException {
-
-            BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-
-            int[][] t = new int[3][3];
-
-            // inicializar las casillas vacías
-            for (int i = 0; i < 3; i++) {
-                for (int j = 0; j < 3; j++) {
-                    t[i][j] = 7;
-
-
-                }
             }
+        }
 
 
-            // mostrar el tablero
-            visualizarTablero(t);
+        // mostrar el tablero
+        visualizarTablero(t);
 
-            // ver a quien le toca jugar
-            int turno = 0;
+        // ver a quien le toca jugar
+        int turno = 0;
 
-            int tiradas = 0;
+        int tiradas = 0;
 
-            do {
-                // el usuario elija casilla
-                System.out.print("fila (0-2): ");
-                int fila = Integer.parseInt(br.readLine());
+        do {
+            // el usuario elija casilla
+            System.out.print("fila (0-2): ");
+            int fila = Integer.parseInt(br.readLine());
 
-                System.out.println("columna(0-2): ");
-                int columna = Integer.parseInt(br.readLine());
+            System.out.println("columna(0-2): ");
+            int columna = Integer.parseInt(br.readLine());
 
-                // ver si la tirada es válida y actualizar tablero
-                if (t[fila][columna] == 7) {
-                    // válida
-                    t[fila][columna] = turno;
+            // ver si la tirada es válida y actualizar tablero
+            if (t[fila][columna] == 7) {
+                // válida
+                t[fila][columna] = turno;
 
-                    // contabilizar tirada
-                    tiradas +=1;
+                // contabilizar tirada
+                tiradas += 1;
 
-                    // cambio turno
-                    if (turno == 0) {
-                        turno = 1;
-                    } else {
-                        turno = 0;
-                    }
-
-                    // mostrar tablero
-                    visualizarTablero(t);
-
-
+                // cambio turno
+                if (turno == 0) {
+                    turno = 1;
                 } else {
-                    System.err.println("Casilla ocupada...");
+                    turno = 0;
                 }
 
-            }while(tiradas < 9 && !comprobarGanador(t));
+                // mostrar tablero
+                visualizarTablero(t);
 
-            if(tiradas < 9){
-                System.out.println("enhorabuena!! has ganado");
-            }else{
-                System.out.println("empate");
+
+            } else {
+                System.err.println("Casilla ocupada...");
             }
 
+        } while (tiradas < 9 && !comprobarGanador(t));
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        if (tiradas < 9) {
+            System.out.println("enhorabuena!! has ganado");
+        } else {
+            System.out.println("empate");
+        }
 
 
     }
