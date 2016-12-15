@@ -1,12 +1,13 @@
 package com.company;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
 public class Main {
 
-    public static void main(String[] args) {
+    public static void visualizarSudoku(int[][] sudoku) {
 
-        int[][] sudoku = new int[9][9];
-
-        // mostrar tablero inicial
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
                 sudoku[0][0] = 5;
@@ -41,13 +42,91 @@ public class Main {
                 sudoku[8][8] = 7;
 
 
-                System.out.format("%4d", sudoku[i][j]);
+                switch ( sudoku[i][j]){
+                    case 1:
+                    case 2:
+                    case 3:
+                    case 4:
+                    case 5:
+                    case 6:
+                    case 7:
+                    case 8:
+                    case 9:
+                        System.out.format("%4d", sudoku[i][j]);
+                        break;
+                    case 0:
+                        System.out.format("%4s", "-");
+                        break;
 
+
+                }
 
             }
             System.out.println();
 
         }
+    }
+
+    // El juego se ha terminado
+    public static boolean terminado( int[][] sudoku ) {
+
+
+        for (int f = 0; f < sudoku.length; f++)
+            for (int c = 0; c < sudoku[0].length; c++)
+                if (sudoku[f][c] == 0)
+                    return false;
+
+
+        return true;
+    }
+
+        // No sobrescribir valores
+    public static boolean casillasVacias( int fila, int columna, int[][] sudoku){
+
+        if ( sudoku[fila][columna] == -1)
+            return false;
+
+        return true;
+
+    }
+    public static void main(String[] args) throws IOException {
+
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        int[][] sudoku = new int[9][9];
+
+        // Inicializar las casillas vacías
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                sudoku[i][j] = 0;
+
+
+            }
+        }
+
+
+
+        visualizarSudoku(sudoku);
+
+        System.out.print("Fila (1-9): ");
+        int fila = Integer.parseInt(br.readLine())-1;
+        System.out.print("Columna (1-9): ");
+        int columna = Integer.parseInt(br.readLine())-1;
+        System.out.println("Numero (1-9): ");
+        int numero = Integer.parseInt(br.readLine())-1;
+
+
+        // Ver si la tirada es válida y actualizar el tablero
+        if (sudoku[fila][columna] == -1) {
+            // Válida
+            sudoku[fila][columna] = numero;
+
+            visualizarSudoku(sudoku);
+
+        } else {
+            System.err.println("casilla ocupada...");
+        }
+
 
 
     }

@@ -11,7 +11,11 @@ public class Main {
         final int MAX_PREG = 4;
         final int MAX_RESP = 4;
 
+
+        // array de preguntas
         String[] pregunta = new String[MAX_PREG];
+
+        // array de respuestas
         String[] respuesta = new String[MAX_RESP];
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -30,6 +34,7 @@ public class Main {
             }
 
             String decision = "";
+
             do{
 
             // Has acertado?
@@ -52,12 +57,6 @@ public class Main {
                 System.out.println("Quieres probar con otra pregunta o FIN: ");
                 decision = br.readLine();
             }
-
-            // Mostrar preguntas de forma aleatoria hasta FIN.
-
-
-
-
 
         } while (!decision.equalsIgnoreCase("FIN"));
 
